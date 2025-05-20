@@ -4,7 +4,7 @@
     <meta name="description" content="Webpage description goes here" />
     <meta charset="utf-8" />
     <title>Viachaslau Web Protfolio</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="fanta.css" />
     <link
       rel="stylesheet"
@@ -52,13 +52,18 @@
           </a>
         </div>
         <div id="play-game">
-          <button onCLick="">Play game ???</button>
+          <button onclick="playGame()">Play game???</button>
         </div>
         <div style="display: none" class="color-div">
           <h4>Pick a color</h4>
-          <p>Great... now it's ruined!</p>
-          <input type="color" id="color-picker" onChange="" value="#0084FF" />
-          <button style="display: none" onClick="">Reset</button>
+          <p style="display: none">Great... now it's ruined!</p>
+          <input
+            type="color"
+            id="color-picker"
+            onchange="changeColor()"
+            value="#0084ff"
+          />
+          <button style="display: none" onclick="resetColor()">Reset</button>
         </div>
       </section>
 
@@ -155,7 +160,7 @@
             <div class="img-div">
               <img
                 class="big-img"
-                src="./public/image2.png"
+                src="./public/image.png"
                 alt="vrovsky-thumbnail"
               />
             </div>
@@ -184,7 +189,7 @@
             <div class="img-div">
               <img
                 class="big-img"
-                src="./public/image3.png"
+                src="./public/image.png"
                 alt="vrovsky-thumbnail"
               />
             </div>
@@ -201,6 +206,36 @@
         <a target="_blank" href="https://github.com/vrovsky">GitHub</a>
       </p>
     </footer>
-    <script src=""></script>
+    <script>
+      const body = document.querySelector("body");
+      const colorInput = document.getElementById("color-picker");
+      const colorDiv = document.querySelector(".color-div");
+      const hiddenText = document.querySelector(".color-div p");
+      const resetBtn = document.querySelector(".color-div button");
+      const playBtn = document.getElementById("play-game");
+
+      function playGame() {
+        colorDiv.style.display = "block";
+        playBtn.style.display = "none";
+      }
+
+      function changeColor() {
+        const selectedColor = colorInput.value;
+        body.style.background = selectedColor;
+        resetBtn.style.display = "block";
+        hiddenText.style.display = "block";
+        colorInput.style.display = "none";
+      }
+
+      function resetColor() {
+        body.style.background = "white";
+        colorInput.style.display = "block";
+        playBtn.style.display = "block";
+
+        hiddenText.style.display = "none";
+        resetBtn.style.display = "none";
+        colorDiv.style.display = "none";
+      }
+    </script>
   </body>
 </html>
